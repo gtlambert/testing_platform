@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'test.views.index'),
+    url(r'^review-mismatch$', 'test.views.review_mismatch'),
 ]
