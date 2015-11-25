@@ -2,4 +2,14 @@ from django.contrib import admin
 
 from .models import RatingMismatchTest
 
-admin.site.register(RatingMismatchTest)
+
+class RatingMismatchTestAdmin(admin.ModelAdmin):
+    list_display = ['datetime_started',
+                    'num_products_tested', 
+                    'number_reviewers_matches',
+                    'number_reviewers_mismatches',
+                    'review_rating_matches',
+                    'review_rating_mismatches',
+                    ]
+
+admin.site.register(RatingMismatchTest, RatingMismatchTestAdmin)

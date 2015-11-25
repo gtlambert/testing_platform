@@ -15,14 +15,17 @@ class ApprovedContentTest(models.Model):
 class RatingMismatchTest(models.Model):
     num_products = models.IntegerField(blank=True)
     num_products_tested = models.IntegerField(default=0)
-    datetime_started = models.DateTimeField(datetime.datetime.now())
+    datetime_started = models.DateTimeField(default=datetime.datetime.now())
     datetime_finished = models.DateTimeField(blank=False, null=True)
     is_active = models.BooleanField(default=True)
 
     # TEST 1
-    review_number_matches = models.IntegerField(blank=False, default=0)
-    review_number_mismatches = models.IntegerField(blank=False, default=0)
+    number_reviewers_matches = models.IntegerField(blank=False, default=0)
+    number_reviewers_mismatches = models.IntegerField(blank=False, default=0)
+    
     
     # TEST 2
     review_rating_matches = models.IntegerField(blank=False, default=0)
     review_rating_mismatches = models.IntegerField(blank=False, default=0)
+    
+    # need a notes field which can be updated by user

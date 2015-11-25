@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'test.views.index'),
     url(r'^review-mismatch$', 'test.views.review_mismatch'),
+    url(r'tests$', 'test.views.view_tests'),
 ]

@@ -1,0 +1,31 @@
+{% block content %}
+
+<h3>Rating Mismatch Tests</h3>
+<table>
+	<tr>
+		<th>Date Started</th>
+		<th>Time Started</th>
+		<th>Total Number of Products</th>
+		<th>Number of Products Tested</th>
+		<th>Number Reviewers Matches</th>
+		<th>Number Reviewers Mismatches</th>
+		<th>Review Rating Matches</th>
+		<th>Review Rating Mismatches</th>
+		<th>Status</th>
+
+	</tr>
+	{% for test in rating_mismatch_tests %}
+	<tr>
+		<td>{{ test.datetime_started|date:"D j N" }}</td>
+		<td>{{ test.datetime_started|date:"G:i" }}</td>
+		<td>{{ test.num_products }}</td>
+		<td>{{ test.num_products }}</td>
+		<td>{{ test.num_products_tested }}</td>
+		<td>{{ test.number_reviewers_matches }}</td>
+		<td>{{ test.number_reviewers_mismatches }}</td>
+		<td>{{ test.review_rating_matches }}</td>
+		<td>{{ test.review_rating_mismatches }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
