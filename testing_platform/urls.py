@@ -18,7 +18,16 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'test.views.index'),
+    url(r'^$', 'test.views.index', name='home'),
+    url(r'^tests$', 'test.views.view_tests', name='tests'),
+    
+    
+    # run tests with post requests
     url(r'^review-mismatch$', 'test.views.review_mismatch'),
-    url(r'tests$', 'test.views.view_tests'),
+    
+    
+    # view tests
+    url(r'^review-mismatch-test/(?P<test_identifier>\d+)$', 
+        'test.views.view_rating_mismatch_test', name='review-mismatch-test'),
+
 ]

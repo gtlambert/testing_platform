@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../stdin"],"names":[],"mappings":"AAAA,IAAI,CAAC;EACJ,UAAU,EAAE,IAAK,GACjB","file":"main.css","sourcesContent":["body {\r\n\tbackground: blue;\r\n}"],"sourceRoot":"/source/"}
+{"version":3,"sources":["../../stdin"],"names":[],"mappings":"AAIA,EAAE,EAAE,EAAE,EAAE,EAAE,EAAE,EAAE,EAAE,EAAE,EAAE,EAAE,CAAC;EACtB,KAAK,EAAE,IAAK,GACZ","file":"main.css","sourcesContent":["body {\r\n\t// background: blue;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n\tcolor: blue;\r\n}"],"sourceRoot":"/source/"}

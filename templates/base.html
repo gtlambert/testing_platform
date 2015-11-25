@@ -4,12 +4,23 @@
 <html>
 	<head>
 		<title>Testing Platform</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/normalise.css' %}">
+		<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/normalise.css' %}"> -->
 		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.css' %}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="{% static 'js/main.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/npm.js' %}"></script>
+
 	</head>
-	<body>
+	<body class="container">
+		<nav class="navbar navbar-default">
+			<ul class="nav navbar-nav">
+				<li><a href="{% url 'home' %}">Home</a></li>
+				<li><a href="{% url 'tests' %}">Tests</a></li>
+			</ul>
+		</nav>
 		{% block content %}{% endblock %}
 	</body>
 </html>

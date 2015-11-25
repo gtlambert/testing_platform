@@ -14,7 +14,8 @@ def index(request):
 
 def review_mismatch(request):
     r = requests.get(
-        'http://cms.uberated.zone/api/retailer-products/exported/ids')
+        #'http://cms.uberated.zone/api/retailer-products/exported/ids') # for live
+        'http://test.uberated.zone:8443/api/retailer-products/exported/ids')
     data = json.loads(r.content)
     data = data['variables'][0]['values']
     product_ids = [prod_id[0] for prod_id in data]
@@ -22,16 +23,18 @@ def review_mismatch(request):
     test = RatingMismatchTest.objects.create(
         num_products=len(product_ids))
         
-    for product_id in product_ids[:40]:
+    for product_id in product_ids: # slice to limit server calls
         try:
             r = requests.get(
-                'http://scripts.uberated.zone/api/widgetdata/shopDirect/{}'.format(product_id))
+                #'http://scripts.uberated.zone/api/widgetdata/live/shopDirect/{}'.format(product_id)) # for live
+                'http://test.uberated.zone:8443/api/widgetdata/live/shopDirect/{}'.format(product_id))
             data = json.loads(r.content)
     
-            
             tab_number_reviewers = data['ubNoReviewers']
             tab_rating = data['ubRating']
-            r = requests.get('http://cms.uberated.zone/content/overview/{}'.format(data['ubProductId']))
+            r = requests.get(
+                #'http://scripts.uberated.zone/content/overview/{}'.format(data['ubProductId']))
+                'http://test.uberated.zone:8443/content/overview/{}'.format(data['ubProductId']))
             tree = etree.HTML(r.text)
     
             widget_number_reviewers = tree.xpath('//div[@class="r"]/p/text()')
@@ -76,13 +79,20 @@ def review_mismatch(request):
     return HttpResponse('some data')
 
 def view_tests(request):
-    rating_mismatch_tests = RatingMismatchTest.objects.all().order_by('-datetime_started')
+    rating_mismatch_tests = RatingMismatchTest.objects.all().order_by('-created_at')
     print('get to here')
     context_dict = {
         'rating_mismatch_tests': rating_mismatch_tests,
     }
     
     return render(request, 'tests.html', context=context_dict)
+
+def view_rating_mismatch_test(request, test_identifier):
+    rating_mismatch_test = RatingMismatchTest.objects.get(id=test_identifier)
+    context_dict = {
+        'rating_mismatch_test': rating_mismatch_test
+    }
+    return render(request, 'test.html', context=context_dict)
  
 # route in  
 # http://cms.uberated.zone/api/retailer-products/exported/ids

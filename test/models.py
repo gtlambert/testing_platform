@@ -15,7 +15,7 @@ class ApprovedContentTest(models.Model):
 class RatingMismatchTest(models.Model):
     num_products = models.IntegerField(blank=True)
     num_products_tested = models.IntegerField(default=0)
-    datetime_started = models.DateTimeField(default=datetime.datetime.now())
+    created_at = models.DateTimeField(auto_now_add=True)
     datetime_finished = models.DateTimeField(blank=False, null=True)
     is_active = models.BooleanField(default=True)
 
