@@ -7,6 +7,7 @@
 	<tr>
 		<th>Date Started</th>
 		<th>Time Started</th>
+		<th>Content Type</th>
 		<th>Total Number of Products</th>
 		<th>Number of Products Tested</th>
 		<th>Number Reviewers Matches</th>
@@ -20,6 +21,7 @@
 	<tr>
 		<td><a href="{% url 'review-mismatch-test' test_identifier=test.id %}">{{ test.created_at|date:"D j N" }}</a></td>
 		<td>{{ test.created_at|date:"G:i" }}</td>
+		<td>{{ test.content_type }}</td>
 		<td>{{ test.num_products }}</td>
 		<td>{{ test.num_products_tested }}</td>
 		<td>{{ test.number_reviewers_matches }}</td>

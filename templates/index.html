@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Test</h2>
-<p>Run some tests</p>
 
-<h4>Approved</h4>
-<button>Run</button>
+<div id="content">
+	<h4>Content Test</h4>
+	<select>
+		<option value="approved">Approved</option>
+		<option value="exported">Exported</option>
+		<option value="live">Live</option>
+	</select>
+	<button>Run</button>
 
-<h4>Exported</h4>
-<button>Run</button>
+</div>
 
-<h4>Review Mismatch Test</h4>
-<button id="review-mismatch">Run</button>
-
-<h2>Test Runs</h2>
-<table>
-	<thead>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+<div id="review-mismatches">
+	<h4>Review Mismatch Test</h4>
+	<select>
+		<option value="exported">Exported</option>
+		<option value="live">Live</option>
+	</select>
+	<button>Run</button>
+</div>
 {% endblock %}

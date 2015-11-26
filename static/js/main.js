@@ -2,13 +2,12 @@ console.log('file is loading');
 console.log('file has got my changes');
 
 $(function() {
-    
-
-    $('#review-mismatch').click(function() {
-    	console.log('finally successufly');
+    $('#review-mismatches button').click(function() {
+        console.log('click');
     	$.ajax({
 			url: 'review-mismatch',
-			method: 'POST',
+			type: 'POST',
+            data: {'contentType': $('#review-mismatches select option:selected').attr('value')},
 			success: function(data) {
 				console.log('this was a successful call');
 				console.log('this is the data returned');
@@ -17,6 +16,24 @@ $(function() {
 		});
     });
 });
+
+$(function() {
+    $('#content button').click(function() {
+        console.log('click');
+        $.ajax({
+            url: 'content',
+            type: 'POST',
+            data: {'contentType': $('#content select option:selected').attr('value')},
+            success: function(data) {
+                console.log('this was a successful call');
+                console.log('this is the data returned');
+                console.log(data);
+            }
+        });
+    });
+});
+
+
 
 // using jQuery
 function getCookie(name) {

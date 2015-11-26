@@ -24,7 +24,7 @@ urlpatterns = [
     
     # run tests with post requests
     url(r'^review-mismatch$', 'test.views.review_mismatch'),
-    
+    url(r'^content$', 'test.views.content'),
     
     # view tests
     url(r'^review-mismatch-test/(?P<test_identifier>\d+)$', 

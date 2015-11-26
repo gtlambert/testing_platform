@@ -3,17 +3,80 @@
 {% block content %}
 <div class="col-md-12 first">
 	<div class="panel panel-default">
-		This is some content
+		<div class="panel-heading text-center">
+			Test Run
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered table-hover">
+				<tr>
+					<th>Date Started</th>
+					<th>Time Started</th>
+					<th>Content Type</th>
+					<th>Total Number of Products</th>
+					<th>Number of Products Tested</th>
+					<th>Number Reviewers Matches</th>
+					<th>Number Reviewers Mismatches</th>
+					<th>Review Rating Matches</th>
+					<th>Review Rating Mismatches</th>
+					<th>Status</th>
+
+				</tr>
+				<tr>
+					<td>{{ rating_mismatch_test.created_at|date:"D j N" }}</td>
+					<td>{{ rating_mismatch_test.created_at|date:"G:i" }}</td>
+					<td>{{ rating_mismatch_test.content_type }}</td>
+					<td>{{ rating_mismatch_test.num_products }}</td>
+					<td>{{ rating_mismatch_test.num_products_tested }}</td>
+					<td>{{ rating_mismatch_test.number_reviewers_matches }}</td>
+					<td>{{ rating_mismatch_test.number_reviewers_mismatches }}</td>
+					<td>{{ rating_mismatch_test.review_rating_matches }}</td>
+					<td>{{ rating_mismatch_test.review_rating_mismatches }}</td>
+					{% if rating_mismatch_test.is_active %}
+					<td>Running</td>
+					{% else %}
+					<td>Finished</td>
+					{% endif %}
+				</tr>
+			</table>
+			<!-- <h4>Run Details</h4>
+			<p>Start Time: {{ rating_mismatch_test.created_at|date:"D j N G:i" }}</p>
+			{% if rating_mismatch_test.status %}
+			<p>Status: Running</p>
+			{% else %}
+			<p>Status: Complete</p>
+			{% endif %} -->
+
+		</div>
 	</div>
 
 	<div class="row"> 
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
-					Errors
+					Test Failures
 				</div>
 				<div class="panel-body">
-					This is the panel body
+					{% if test_products_fail %}
+					<table class="table table-striped table-bordered table-hover">
+						<tr>
+							<th>Tab #Reviewers</th>
+							<th>Widget #Reviewers</th>
+							<th>Tab Rating</th>
+							<th>Widget Rating</th>
+						</tr>
+						{% for test_product in test_products_fail %}
+						<tr>
+							<td>{{ test_product.product_id }}</td>
+							<td>{{ test_product.tab_number_reviewers }}</td>
+							<td>{{ test_product.widget_number_reviewers }}</td>
+							<td>{{ test_product.tab_rating }}</td>
+							<td>{{ test_product.widget_rating }}</td>
+						</tr>
+						{% endfor %}
+					{% else %}
+						<p>No Errors :)</p>
+					{% endif %}
+					</table>	
 				</div>
 			</div>
 		</div>
@@ -22,10 +85,31 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
-					Failures
+					Test Passes
 				</div>
 				<div class="panel-body">
-					This is the panel body
+					{% if test_products_pass %}
+					<table class="table table-striped table-bordered table-hover">
+						<tr>
+							<th>Product ID</th>
+							<th>Tab #Reviewers</th>
+							<th>Widget #Reviewers</th>
+							<th>Tab Rating</th>
+							<th>Widget Rating</th>
+						</tr>
+						{% for test_product in test_products_pass %}
+						<tr>
+							<td>{{ test_product.product_id }}</td>
+							<td>{{ test_product.tab_number_reviewers }}</td>
+							<td>{{ test_product.widget_number_reviewers }}</td>
+							<td>{{ test_product.tab_rating }}</td>
+							<td>{{ test_product.widget_rating }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+					{% else %}
+						<p>No passed products :(</p>
+					{% endif %}	
 				</div>
 			</div>
 		</div>
