@@ -7,27 +7,29 @@ from django.db import models
 ######### TESTS ####################
 ####################################
 
-class ContentTest(models.Model):
+class BaseTest(models.Model):
     num_products = models.IntegerField(blank=True)
     num_products_tested = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     datetime_finished = models.DateTimeField(blank=False, null=True)
     is_active = models.BooleanField(default=True)
     content_type = models.CharField(blank=True, max_length=100)
+    
+    class Meta:
+        abstract = True
+
+class ContentTest(BaseTest):
+    pass
 
 
 class ContentTestProduct(models.Model):
-    pass
+    parent_test = models.ForeignKey(ContentTest)
+    product_id = models.CharField(max_length=10)
+    
     
 
 # need to understand blank, null, default etc
-class RatingMismatchTest(models.Model):
-    num_products = models.IntegerField(blank=True)
-    num_products_tested = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    datetime_finished = models.DateTimeField(blank=False, null=True)
-    is_active = models.BooleanField(default=True)
-    content_type = models.CharField(blank=True, max_length=100)
+class RatingMismatchTest(BaseTest):
 
     # TEST 1
     number_reviewers_matches = models.IntegerField(blank=False, default=0)

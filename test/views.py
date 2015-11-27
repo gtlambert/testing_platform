@@ -79,12 +79,9 @@ def review_mismatch(request):
 
 def content(request):
     content_type = request.POST['contentType']
-    
+    r = requests.get(
+        'http://test.uberated.zone:8443/api/admin/testing/exported/all')
     return HttpResponse('this is some data from the content test')
-    
-    
-    
-    
     
 
 def view_tests(request):
