@@ -40,7 +40,7 @@ def review_mismatch(request):
         content_type=content_type
     )
         
-    for product_id in product_ids: # slice to limit server calls
+    for product_id in product_ids[:50]: # slice to limit server calls
         test_product = MismatchTestProduct.objects.create(
             parent_test=RatingMismatchTest.objects.get(id=test.id),
             product_id=product_id,
