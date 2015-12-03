@@ -39,12 +39,15 @@ def review_mismatch(request):
         num_products=len(product_ids),
         content_type=content_type
     )
-        
+    
+    counter = 0
     for product_id in product_ids[:200]: # slice to limit server calls
         test_product = MismatchTestProduct.objects.create(
             parent_test=RatingMismatchTest.objects.get(id=test.id),
             product_id=product_id,
         )
+        print('the counter is')
+        print(counter)
         try:
             r = requests.get(
                 'http://test.uberated.zone:8443/api/widgetdata/live/shopDirect/{}'.format(product_id))
