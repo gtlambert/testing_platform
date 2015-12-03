@@ -3,6 +3,7 @@ import requests
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from lxml import etree
 
 from .models import RatingMismatchTest, MismatchTestProduct
@@ -12,6 +13,7 @@ def index(request):
     return render(request, 'index.html')
 
 
+@csrf_exempt
 def review_mismatch(request):
     content_type = request.POST['contentType']
     print('get to here')
