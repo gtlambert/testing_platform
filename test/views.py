@@ -48,6 +48,7 @@ def review_mismatch(request):
         )
         print('the counter is')
         print(counter)
+        counter += 1
         try:
             r = requests.get(
                 'http://test.uberated.zone:8443/api/widgetdata/live/shopDirect/{}'.format(product_id))
