@@ -14,8 +14,21 @@ def index(request):
 
 def review_mismatch(request):
     content_type = request.POST['contentType']
+    print('get to here')
     r = requests.get(
         'http://test.uberated.zone:8443/api/retailer-products/exported/ids')
+    print('made the first request')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('######################')
+    print('the status code is')
     data = json.loads(r.content)
     data = data['variables'][0]['values']
     product_ids = [prod_id[0] for prod_id in data]
