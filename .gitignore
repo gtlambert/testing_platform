@@ -4,4 +4,3 @@ venv
 staticfiles
 gulpfile.js
 package.json
-db.sqlite3
