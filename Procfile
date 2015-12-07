@@ -1,3 +1,2 @@
-web: gunicorn testing_platform.wsgi --log-file -
-web: gunicorn testing_platform:app --timeout 100
+web: gunicorn testing_platform.wsgi --log-file -t 100 - 
 python: python
