@@ -17,7 +17,7 @@
 		<th>Status</th>
 
 	</tr>
-	{% for test in rating_mismatch_tests %}
+	{% for test in rating_mismatch_tests|slice:":10" %}
 	<tr>
 		<td><a href="{% url 'review-mismatch-test' test_identifier=test.id %}">{{ test.created_at|date:"D j N" }}</a></td>
 		<td>{{ test.created_at|date:"G:i" }}</td>
@@ -36,4 +36,31 @@
 	</tr>
 	{% endfor %}
 </table>
+
+<h3>Content Tests</h3>
+<table class="table table-striped table-bordered table-hover">
+	<tr>
+		<th>Date Started</th>
+		<th>Time Started</th>
+		<th>Content Type</th>
+		<th>Total Number of Products</th>
+		<th>Number of Products Tested</th>
+		<th>Status</th>
+	</tr>
+	{% for test in content_tests|slice:":10" %}
+	<tr>
+		<td><a href="#" >{{ test.created_at|date:"D j N" }}</a></td>
+		<td>{{ test.created_at|date:"G:i" }}</td>
+		<td>{{ test.content_type }}</td>
+		<td>{{ test.num_products }}</td>
+		<td>{{ test.num_products_tested }}</td>
+		{% if test.is_active %}
+		<td>Running</td>
+		{% else %}
+		<td>Finished</td>
+		{% endif %}
+	</tr>
+	{% endfor %}
+</table>
+
 {% endblock %}
